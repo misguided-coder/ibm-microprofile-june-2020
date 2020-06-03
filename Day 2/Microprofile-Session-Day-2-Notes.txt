@@ -18,9 +18,9 @@ Open Liberty Microprofile (3.3) Features
 Eclipse MicroProfile short form - MP
 
 Plan for the day
-1) JAX-RS API - all concepts for buidling MS
-2) JSOP API - all concepts for buidling MS
-3) JSOB API - all concepts for buidling MS
+1) JAX-RS API - all concepts for buidling MS - GET,POST,PUT,DELETE,PathParam,QueryParam
+2) JSON-P API - all concepts for buidling MS
+3) JSON-B API - all concepts for buidling MS
 4) CDI API - all concepts for buidling MS
 5) MP Config API - all concepts for configuring MS from external sources
 6) MP REST Client API - all concepts for buidling Type Safe clients for MS
@@ -43,10 +43,70 @@ Q) Why JAX-RS is chosen as a primary standard for building MS by MP team?
 
 Q) How MP REST Client differs from JAX-RS based client?
 
+JSON-P API (Processing)
+   - is an API designed by Java Team as a standard API to work with json data in Java
+   - is part of JEE 7
+   - crate,read,write,parse,query json data is Java language
+   - will take you away from lots of vender specific APIs available in market to work 
+     with json using Java i.e. GSON,Jettison,Jackson,JSONParser etc..
+   - Json,JsonObject,JsonObjectBuilder,JsonArray,JsonArrayBuilder,JsonReader,JsonWriter,JsonConfig
+   
+JSON
+   -  json has only 2 data structure
+   -  object {k:v,k:v,k:v}
+   -  array [v,v,v,v,v,v]
+   -  complex [v,[],v,{},{k:[v,v,v],k:v,k:{k:v,k:v}}]
+
+JSON-B API (Binding)
+   - is an API designed by Java Team as a standard API to work with json data in Java
+   - is part of JEE 8
+   - high level API to work with json data like JDBC is low level and JPA is high level
+   - bind Java POJO to json and vice-versa
+   - supports many annotations to customize binding behaviour
+   - easy to use and less code to write
+   - Jsonb,JsonbBuilder,JsonbProperty,JsonbTransient,JsonbNillable 
+
+Sample Valid Json String 
+  {\"id\": 1003,\"place\": \"New Delhi\",\"rooms\": 600,\"title\": \"Holiday Inn\"}
 
 
+CDI API 
+  - Context and Dependency Injection
+  - is standard API designed by Java Team under JEE 5 to manage bean dependencies
+  - is supported by many web and other containers
+  - will keep you away from vendor lockin while using DI feature in Java applications
+  - is used mainly to make application components loosly coupled
+  - no more "new" operator in the entire code
+  - bean object creation and destruction is taken care by the environment/container in which
+    application is deployed/running
+  - having a major support in lots of frameworks and runtime environments today
+  - supports field,setter,constructor injection
+  - any bean/pojo can be deployed inside the container using standard configuration file
+    "beans.xml" or using annotations
+  - Injections,Scopes,Life Cycles,Decorators,Manually using container,Qualifiers
 
+Q) what is DI?
 
+Q) which DI container you have used in the past, name it?
+ 
+Q) Can i expect that you know and have used DI in the past?
+
+Q) Name 5 DI containers?
+   PicoContainer, JBoss SEAM, Spring IoC/DI Container, Guice, 
+   JSF 2 Container, EJB 3 Container, JPA Container, Struts 2 Container etc..
+
+CDI concept qualifier
+   -  used to mark an implementation of an interface for unique identification at run time
+   -  used for the purpose of name based injection, rather then by type injection
+   -  is used to provide a unique name to the bean
+   -  qualifier provided unique name to a bean 
+   -  qualifier is type safe to use at runtime
+   -  technically qualifier is an annotation
+   -  developer has to first create qualifier custom annotation before using it
+  
+Q) how to create custom annotation in Java 5?
+Q) annotation has how many retention policies?
+Q) annotation has how many target?
 
    
 
