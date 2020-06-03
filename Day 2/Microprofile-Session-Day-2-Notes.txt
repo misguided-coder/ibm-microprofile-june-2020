@@ -1,0 +1,63 @@
+Rules
+1) Keep yourself on mute if required unmute and speak
+2) We can speak via chat or voice command in case of questions/doubts
+3) Make session as intercative as possible by asking questions
+4) 3 breaks for Morning Tea 11:00 for 15 minutes ,1:10 for 50 mitnues,4:00 for 15 minutes very very strictly
+5) Be honest while learing remotely by attending very actively, do not be passive
+
+Methodology
+20% time will be spent on explaing theary and concepts
+80% time will be spent on writing demos and examples
+ 
+Open Liberty Microprofile (3.3) Features
+[appSecurity-2.0, cdi-2.0, concurrent-1.0, distributedMap-1.0, jaxrs-2.1, jaxrsClient-2.1,
+   jndi-1.0, json-1.0, jsonb-1.0, jsonp-1.1, jwt-1.0, microProfile-3.3, monitor-1.0, 
+  mpConfig-1.4, mpFaultTolerance-2.1, mpHealth-2.2, mpJwt-1.1, mpMetrics-2.3, mpOpenAPI-1.1, 
+  mpOpenTracing-1.3, mpRestClient-1.4, opentracing-1.3, servlet-4.0, ssl-1.0]
+   
+Eclipse MicroProfile short form - MP
+
+Plan for the day
+1) JAX-RS API - all concepts for buidling MS
+2) JSOP API - all concepts for buidling MS
+3) JSOB API - all concepts for buidling MS
+4) CDI API - all concepts for buidling MS
+5) MP Config API - all concepts for configuring MS from external sources
+6) MP REST Client API - all concepts for buidling Type Safe clients for MS
+7) Building MS application involving multiple MSs
+8) MS-MS communication using MP REST Client
+9) MP Open API - all concepts for generating MS documentation
+
+Recap for DAY 1
+
+JEE 8 
+   - future development was stopped by Oracle and JEE 8 was donated to Eclipse under project name 
+     called "Jakarta" 
+         - JAX-RS, JSONP,JSONB,CDI - MicroProfile
+
+Q) What is the need for Eclipse MicroProfile, when we have other tools in Java for building MS?
+
+Q) Tell me the name of 3 implementations where I can deploy MS built using MP?
+
+Q) Why JAX-RS is chosen as a primary standard for building MS by MP team?
+
+Q) How MP REST Client differs from JAX-RS based client?
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
