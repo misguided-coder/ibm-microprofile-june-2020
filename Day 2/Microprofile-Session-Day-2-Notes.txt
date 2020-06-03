@@ -108,7 +108,28 @@ Q) how to create custom annotation in Java 5?
 Q) annotation has how many retention policies?
 Q) annotation has how many target?
 
-   
+
+Exercise 1) 
+   Create following 2 services as 
+   a) FrontDeskService (will run on port 7001 in a seperate OpenLiberty runtime)
+                - checkRoomAvailability()  /api/frontdesk/check
+                       - use MP REST Client API to make a call to RoomBookingService
+   b) RoomBookingService (will run on port 7002 in a seperate OpenLiberty runtime)
+              - boolean roomsAvailable(int howMany) /api/room
+ 
+   Purpose of the exercise is 
+		- MS to MS communication  
+		- utilizing Type Safe MP REST Client
+
+
+Preparation for Day 4
+   - Java 8 Lambda Expression
+   - Java 8 Streams
+                - filter,foreach,map,collect,reduce
+   - Java 10 Flow API for Reactive proframming using reactive streams              
+
+
+      
 
 
 
