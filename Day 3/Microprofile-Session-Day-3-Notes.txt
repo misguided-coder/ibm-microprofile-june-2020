@@ -1,0 +1,124 @@
+Rules
+1) Keep yourself on mute if required unmute and speak
+2) We can speak via chat or voice command in case of questions/doubts
+3) Make session as intercative as possible by asking questions
+4) 3 breaks for Morning Tea 11:00 for 15 minutes ,1:10 for 50 mitnues,4:00 for 15 minutes very very strictly
+5) Be honest while learing remotely by attending very actively, do not be passive
+
+Methodology
+20% time will be spent on explaing theary and concepts
+80% time will be spent on writing demos and examples
+ 
+Open Liberty Microprofile (3.3) Features
+[appSecurity-2.0, cdi-2.0, concurrent-1.0, distributedMap-1.0, jaxrs-2.1, jaxrsClient-2.1,
+   jndi-1.0, json-1.0, jsonb-1.0, jsonp-1.1, jwt-1.0, microProfile-3.3, monitor-1.0, 
+  mpConfig-1.4, mpFaultTolerance-2.1, mpHealth-2.2, mpJwt-1.1, mpMetrics-2.3, mpOpenAPI-1.1, 
+  mpOpenTracing-1.3, mpRestClient-1.4, opentracing-1.3, servlet-4.0, ssl-1.0]
+   
+Eclipse MicroProfile short form - MP
+
+Plan for the day
+1) JAX-RS API - all concepts for buidling MS - GET,POST,PUT,DELETE,PathParam,QueryParam
+2) MP Config API - all concepts for configuring MS from external sources
+3) MP REST Client API - all concepts for buidling Type Safe clients for MS
+4) Building MS application involving multiple MSs
+5) MS-MS communication using MP REST Client
+6) MP Open API - all concepts for generating MS documentation
+7) MP Metric API - all concepts for generating MS documentation
+8) MP Faulttoleratce API - all concepts for generating MS documentation
+
+Recap for DAY 1 & 2
+
+CDI - Decorator
+      - can easily help you to add extra functionality on deployed beans without modifying 
+        original bean functionality   
+      - can plugin new funcationalty into alreay existing system
+      - can achieve AOP
+      - can be used as a delegator to the original bean
+      - can be used as a interceptor
+      - Decorator, Delegate
+
+CDI Scopes
+   -  will decide life of a bean
+   -  Dependent - this is the default scope always, will share the scope of the bean 
+                  in which this bean is injected but dependent bean instance is never shared 
+		  with any other bean
+   -  Request   - for each client request, new bean will create
+   -  Session   - for client entire session, bean will be used
+   -  Conversation - for client entire conversation, will be used
+   -  Application - like singleton, instance will exist in application as long as app is running
+
+MP Config API 
+    - this API will help you to externalize configurations from code
+    - is a mendate for MS to have their configurations in seperate outside places
+    - MS APP has 20 MS and yhey are deloyed and running by nature in distributed environment
+    - Single MS running 50 instances and already bound within some cloud naming sevice
+    - MS APP running and deployed in multiple containers,clouds and client premises
+    - will cover all deployment and runtime needs for changing behaviour of the app	
+    - Config,ConfigProperty,Convertor,ConfigProvider,ConfigProviderResolver,ConfigSource,Provider
+
+MicroProfile APIs
+   JAX-RS,CDI,JSONP,JSONB - for developing REST based MS
+   MS-Config - for keeping configuration away from code so that at runtime changes can be made 
+               in the ruunning MS app distributed way
+
+MP Config concepts (Source of Truth)
+   - default sources
+         a) system properties with priority 400 i.e. -Dname=value
+         b) environment properties  with priority 300 i.e. env variables set,export
+         c) META-INF/microprofile-config.properties with priority 100
+   - custom sources
+         many custom sources can be created by development team to read from and changing
+         runtime time properties and behaviour i.e. DB,yaml,.propery,GIT,BitBucket,URL on Intenet,
+         Centralized SCM,LDAP,JMS,JavaMail
+    	
+MP Open API   
+   - an standard API used for generating API documentation
+   - supports Open API V3 standard
+   - an easy to API  
+   - will make your API more reachable
+   - will make your API more verbose
+   - will make your API more accepetable in market
+   - supports API documentation using standard YAML/RAML format
+   - YAML format is a snaky format
+   - supports declarative/programmatic/static approach for generating documentation
+   - all implementation must provide generated API on url 
+	http://{hostname}:{port}/openapi
+	http://{hostname}:{port}/openapi/ui
+   - Operation,Tag,Response,Responses,Schema,Content,Parameter
+   - statically write the whole documention by hand in a file called "openapi.yaml" and
+     keep it under wepapp/META-INF/openapi.yaml
+ 
+Q) Name scopes supported bu CDI?
+Q) What is th default scope?
+Q) Why do we need decorator in CDI?
+Q) Getting properties from GIT is supported by MP or not?
+Q) can i override property in microprofile-config.properties from command line?
+Q) How to register custom source in Config API?
+Q) How to programmitically pick config sources in MP, name API?
+Q) How to resolve ambigious beans in CDI?
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+

@@ -112,10 +112,14 @@ Q) annotation has how many target?
 Exercise 1) 
    Create following 2 services as 
    a) FrontDeskService (will run on port 7001 in a seperate OpenLiberty runtime)
-                - checkRoomAvailability()  /api/frontdesk/check
+	  Room
+              type - luxury,statndrd,suite,family
+              count
+     	- List<Room> checkRoomAvailability(Room room)  /api/frontdesk/check
                        - use MP REST Client API to make a call to RoomBookingService
    b) RoomBookingService (will run on port 7002 in a seperate OpenLiberty runtime)
-              - boolean roomsAvailable(int howMany) /api/room
+              - List<Room> roomsAvailable(Room room) /api/room
+                        
  
    Purpose of the exercise is 
 		- MS to MS communication  
@@ -127,7 +131,7 @@ Preparation for Day 4
    - Java 8 Streams
                 - filter,foreach,map,collect,reduce
    - Java 10 Flow API for Reactive proframming using reactive streams              
-
+   - Message Broker
 
       
 
