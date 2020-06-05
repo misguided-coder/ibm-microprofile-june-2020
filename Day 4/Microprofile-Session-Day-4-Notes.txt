@@ -1,0 +1,170 @@
+Rules
+1) Keep yourself on mute if required unmute and speak
+2) We can speak via chat or voice command in case of questions/doubts
+3) Make session as intercative as possible by asking questions
+4) 3 breaks for Morning Tea 11:00 for 15 minutes ,1:10 for 50 mitnues,4:00 for 15 minutes very very strictly
+5) Be honest while learing remotely by attending very actively, do not be passive
+
+Methodology
+20% time will be spent on explaing theary and concepts
+80% time will be spent on writing demos and examples
+ 
+Open Liberty Microprofile (3.3) Features
+[appSecurity-2.0, cdi-2.0, concurrent-1.0, distributedMap-1.0, jaxrs-2.1, jaxrsClient-2.1,
+   jndi-1.0, json-1.0, jsonb-1.0, jsonp-1.1, jwt-1.0, microProfile-3.3, monitor-1.0, 
+  mpConfig-1.4, mpFaultTolerance-2.1, mpHealth-2.2, mpJwt-1.1, mpMetrics-2.3, mpOpenAPI-1.1, 
+  mpOpenTracing-1.3, mpRestClient-1.4, opentracing-1.3, servlet-4.0, ssl-1.0]
+   
+Eclipse MicroProfile short form - MP
+
+Plan for the day
+1) JAX-RS API - all concepts for buidling MS - GET,POST,PUT,DELETE,PathParam,QueryParam
+3) MP REST Client API - all concepts for buidling Type Safe clients for MS
+4) Building MS application involving multiple MSs
+5) MS-MS communication using MP REST Client
+7) MP Metric API - all concepts for monitoring MS 
+8) MP Faulttoleratce API - all concepts for handling failures inside MS 
+9) Reactive Applications (MP-Reactive Streams and MP- Reactive Messaging) - all concepts for writing reactive applications 
+
+Recap for DAY 1 & 2 & 3
+
+MP Metric API
+    - is meant and used for monitoring of running MSs
+    - is used to generate 3 types of metrics
+      Infra Mertics - providing info about the infra details on which MS is deployed and running i.e. JVM,CPU,GC,Memory
+      Vendor Metrics - providing info about the runtime on which MS is deployed and running i.e. Server,Session,Entire app detils
+      Application Metrics - providing info about MS application usage and statics
+    - has to make metrics to be available on standard global http endpoint to be seen from anywhere
+    - has to make metrics available under the following URIs
+         - http://{hostname}:{port}/metrics  - supports GET and OPTIONS
+         - http://{hostname}:{port}/metrics/base - supports GET and OPTIONS
+         - http://{hostname}:{port}/metrics/vendor - supports GET and OPTIONS
+         - http://{hostname}:{port}/metrics/application - supports GET and OPTIONS
+    - Developers have to do configuration and writing code only for generating Application metrics while
+      implementation for Infra and Vendor metrics has be be given by vendor only
+    - is used by adminitrators/operations team to check in running app
+    - supports text/plain and application/json
+
+    Application Metrics
+           - Timed    ----- will calculate the time a method call and will show more time related info
+           - SimplyTimed ----- simple version of Timed with less info about method call time
+           - Counted   ----- number of invocations of method call
+           - Gauges   ----- simply used to return increasing/decreasing value of some field as a gauge
+           - Meters   -----  used to track the throughput of endpoint/method calls    
+           - Histogram  ---- used for the purpose of calculating distribution of values over some time 
+
+Q) What is a reactive system, explain?
+ 
+Monolotic Applications
+     - are based on these 4 principles desiged long time back (ACID)
+     - Atomicity
+     - Consistency
+     - Durability
+     - Isolation 
+
+Reactive Applications (Distributed Nature of deployment)
+     - ACID principles is a failure model to build robust/reliable reactive systems/applications
+     - are based on the 4 principles as per reactive menifesto desiged in 2016 by 
+       industry leaders under common umbrella
+     - Responsive ---> application has to be quickly responsive to any event in the system
+     - Resilient  ---> application has to recover from failures automatically
+     - Elastic   ----> application has to work responsibly and uniformally 
+                       under different system/user workload, it is all about scalability
+     - Message Driven ----> applications have to rely on asynchromous comminication model to 
+                            other part of the system 
+
+
+Reactive Applications are exposed to users across the globe so high quality expectations are needed
+by the users from such applications. Generally expectations are resposiveness, 
+error prevention and recovery, support for huge work load, support for large volume of data streams,proper system resource utilization.
+
+Java World support for Reactive systems as per reactive menifesto standards
+   - org.reactivestreams.	
+		Publisher
+		Subscriber
+		Processor
+		Subscription
+    - Java 8  ---> Synscronous Data Processing Stream API (java.util.stream) (Non Reactive Streams)
+    - Java 9/10 ---> Asynscronous Flow Stream API (backpressure) - Publisher,Subscriber,Processor,Subscrition
+    - RxJava ---> Flowable Stream API
+    - Akka Streams ----> Flow Stream API
+    - SmallRye   -----> Reactive Stream API
+    - ZeroDependency ----> Reactive Stream API
+        
+MP support for building Reactive systems
+ - CDI Async Event API  ---> provides communication mechanisiom among different beans to  to communicate
+                             in a loosly coupled way just genereting event and objserving to events - Observer patterm 
+ - SSE API and WebSocket API ----->  push notification based communication from server to client side 
+ - MP Reactive Stream Operators API ----> 
+		a) for easily building reactive application to handle continious 
+				streams of events/data/messages
+		b) ReactiveStreams,PublisherBuilder,SubscriberBuilder,ProcessorBuilder
+                c) provides standard/uniform APIs to use any implementation or multiple 
+                   implementation at run time
+ - MP Reactive Messaging API -----> 
+                a) used for passing messages amoung different part of the system easily
+                b) used to provide common API to connect with different external message borkers
+                c) Incoming,Outgoing,Connector,InputStreamFactroy ,OutputStreamFactroy  
+ - MP FaultTolerance API ----->
+                a) used to build MS application so that failure can be recovered automatically
+                b) will help to build MSs to react in case of failures, will provide alterate solution 
+ - MP REST Client Async API 
+ - MP Metrics and MP Health endpoints react to system health issue or failures, resource usage etc..
+
+MP Reactive Messaging API
+   - provides a loosly coupled way of comunifation between two or more beans in an application
+   - provides a loosly coupled way of comunifation between two or more different MS using third party Message Broker like IBM MQ,Rabbit MQ,Active MQ,Apache Kafka
+   - supports internal and external connectors Connector API
+   - supports producing messages using Producer with the help of @Outgoing 
+   - supports consuming messages using Subscriber with the help of @Incoming
+   - supports producing and consuming messages both using Processor with the help of @Incoming + @Ourgoing
+   - internally works with MP Stream Operator API 
+   - supports producing and consuming messages by one method only @Incoming + @Ourgoing
+   - provides "common message bus" to communicate via known as "channel"
+   - channel is just a string name used by sender and reciver to commuicate with each other
+
+Home Work
+   -  what is virtulization and how VM work?
+   -  what is continerization and how it works?
+   -  what is Docker?
+   -  download docker
+   -  practice following
+               - Dockerfile
+               - create a new image
+               - starting new container
+               - creating a container holding JDK 8 inside
+               - creating a container holding JDK 8  + Java program inside
+
+   - cloud concepts
+
+
+Vert.X framework
+Spring Reactor
+Scala AKKA
+Scala HTTP
+JDK 9 Flow
+Scala Streams
+NodeJS
+
+ 
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
