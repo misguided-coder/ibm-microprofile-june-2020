@@ -1,0 +1,163 @@
+Rules
+1) Keep yourself on mute if required unmute and speak
+2) We can speak via chat or voice command in case of questions/doubts
+3) Make session as intercative as possible by asking questions
+4) 3 breaks for Morning Tea 11:00 for 15 minutes ,1:10 for 50 mitnues,4:00 for 15 minutes very very strictly
+5) Be honest while learing remotely by attending very actively, do not be passive
+
+Methodology
+20% time will be spent on explaing theary and concepts
+80% time will be spent on writing demos and examples
+ 
+Open Liberty Microprofile (3.3) Features
+[appSecurity-2.0, cdi-2.0, concurrent-1.0, distributedMap-1.0, jaxrs-2.1, jaxrsClient-2.1,
+   jndi-1.0, json-1.0, jsonb-1.0, jsonp-1.1, jwt-1.0, microProfile-3.3, monitor-1.0, 
+  mpConfig-1.4, mpFaultTolerance-2.1, mpHealth-2.2, mpJwt-1.1, mpMetrics-2.3, mpOpenAPI-1.1, 
+  mpOpenTracing-1.3, mpRestClient-1.4, opentracing-1.3, servlet-4.0, ssl-1.0]
+   
+Eclipse MicroProfile short form - MP
+
+Plan for the day
+1) MP Faulttoleratce API - all concepts for handling failures inside MS 
+2) Deployment
+3) Overview of Testing MS
+4) MP Health API
+
+Recap for till now
+
+MP Faulttolerance API 
+      - is a standard API for building fault-toletant services
+      - is used to build services so that they can handle different types of failures
+      - is used to build services so that they can recover from recoverable situations
+      - is used to build services so that they can recover from recoverable situations
+      - is used to build relilient services so that they can further operate even in case of failures
+      
+Reasons ---  
+   MSs are running in distrubuted environment and running on remote systems away from each other.
+   So Network Issues
+      Network Down
+      Few system up and few down
+      Slow Network
+      Service A taking to long to responsd to Service B
+      A service keeping client waiting for response 
+      Service B returned error to service A but Service A has to return proper value to client 
+      etc.....
+  
+Some proven and identified patterns to deal with distributed MSs :
+	- Fallback - to define some fallback methods to recover with defult behaviour
+	- Timeout  - to follow SLA and restrict response time policy
+	- Retry    - hope to get system up soon again after some tries 
+	- CircuitBreaker  - make the API fail fast coz half system is down and will be down for some more time
+                          - helps in reducing further overloading of target system
+                          - has 3 stages - Open,Half-Open,Close
+                          - Open stage ----> will fail the API call immediately without any waits.. or tries...  
+                          - Half-Open stage ----> will try to contact with beck end system for some time and then will decide Open or Close stage
+                          - Close stage ----> API will behave normally  and calls will be entertained
+	- BulkHead   -  used to limit number of cuncurrent user calls to the API
+
+
+Initial Development of MS
+        - create a standard webapp using maven and then adding dependencies in pom and 
+          adding extra folders plus required config files by hand
+        - microprofile started project (beta phase) can be created using web console and then 
+          download as a maven project
+
+Deployment of MSs (OpenLiberty,Payara Mirco,WildFly Swarm)
+  - in-premise deployment on MicroProfile server/runtime/composable 
+         - *.war and then deploying and running it
+  - in-premise standalone and self executable independent deployment unit
+         - *.jar and then run from command line like an individual program
+         - make a web jar or uber jar
+         - MS code + runtime = uberjar/webjar 
+         - java -jar "name of the jar"
+  - container based deployment
+         - docker container carrying/shipping (MS + Configuration + OL runtime + JDK 8)
+  - openshift deployment
+         - docker container carrying/shipping (MS + Configuration + OL runtime + JDK 8) and deployed on K8S based PaaS
+  - cloud based deployment
+         - deploying MP war to a cloud (CaaS -> code+data) - Pivotal Cloud Foundry/IBM Blumix Cloud/Sloopy
+         - IaaS,PaaS,CaaS
+  - cloud serverless deployment
+	- FaaS
+
+
+Container technology 
+  - is a virtualization technology byt different from earlier virtualization technologies i.e. VMVare,VirtualBox,Parallels
+  - based on Linux OS
+  - is using Linux OS layered architecture to prepare new kind of small-small OSs in virtual world
+  - is using Linux concepts like SFS,Control Groups,Namespaces,Volumes
+  - is used to create light weight container to carry core+dependendencies+needed softwares
+  - does not have innside as such any OS
+  - can help you to create containers ready to run on any Linux,Mac,Windows
+  - a OS virtualization on the other hand  VMVare,VirtualBox,Parallels are for hardware virtualization 
+ 
+Docker
+  - is a software to create such light weight containers
+  - this names come from "dockyard" on sea side
+  - will help in easily transportation of code+dependencies from machine to machine
+  - will help in easily creating container and using them form testing,staging,R&D,dev,
+    multi project on same system,troubleshooting some developer problem etc...
+  - help to save lots of cost 
+  - Docker container is just like an OS having lots of services without OS
+  - has its own cloud where alreay multi-thousand docker images are stored by the industry
+
+Steps for creating a contaiiner
+  1) download and install Docker software 
+  2) Write docker program in a file called "Dockerfile" i.e. Cal.java
+  3) Create a image from "Dockerfile"   i.e. Cal.class
+  4) Create a new container from image and run the container i.e. instance of a class
+  5) Test container is running or not
+
+Image Concept
+   - is a built binary out of source code instructions kept inside "Dockerfile"
+   - has to be reusable and has to follow Linux layered architecture and SFS
+   - image has be built on top of previos image
+   - some commands below 
+         FROM,COPY,ADD,EXPOSE,LABEL,VOLUME,CMD,RUN,ENTRYPOINT  
+
+Docker Cloud/Hub
+   - first create cloud account on docker cloud/hub
+   - login from docker cli
+   - push image from local machine to docker cloud
+
+Open Shift Deployment
+   - first create RED HAT Open Shift cloud account on open shift online cloud
+   - download OpenShift CLI tool
+   - Login to OS from CLI tool
+   - Deploy contanerized MS to OS
+   - Test MS Endpoints from your local machine
+
+Open Shift concepts
+   - S2I image creation 
+   - pod
+   - servcies
+   - controllers
+
+IBM BlueMix Deployment
+   - first create IBM BlueMix Lite Free cloud account 
+   - download IBM CLI tool/PCF CLI tool
+   - Login to Bluemix from PCF CLI tool
+   - Push war to IBM Cloud
+   - Test MS Endpoints from your local machine
+
+
+      
+
+
+
+  
+  
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
